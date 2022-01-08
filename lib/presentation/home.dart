@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/service/navigator.dart';
+import 'package:weather_app/presentation/forecast.dart';
 import 'package:weather_app/utils/constants.dart';
+import 'package:weather_app/utils/ripple_effect.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,15 +27,18 @@ class HomePage extends StatelessWidget {
                     image: const AssetImage('assets/Cloud-background.png'),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(
-                        AppColors.backgroundColor.withOpacity(0.03),
-                        BlendMode.dstIn),
+                      AppColors.backgroundColor.withOpacity(0.03),
+                      BlendMode.dstIn,
+                    ),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 40.0, horizontal: 15.0),
+              padding: const EdgeInsets.symmetric(
+                vertical: 40.0,
+                horizontal: 15.0,
+              ),
               child: Column(
                 children: [
                   Row(
@@ -48,33 +54,33 @@ class HomePage extends StatelessWidget {
                             horizontal: 16,
                           ),
                         ),
-                        child: const Text(
-                          'Search for places',
-                          style: TextStyle(
+                        child: const Text('Search for places',
+                            style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.normal,
-                              color: AppColors.greyShade1),
-                        ),
+                              color: AppColors.greyShade1,
+                            )),
                       ),
                       Container(
-                        width: 40,
-                        height: 40,
-                        padding: const EdgeInsets.all(9),
-                        decoration: const BoxDecoration(
-                          color: AppColors.grey,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(0, 4),
-                              color: AppColors.black,
-                              blurRadius: 4,
-                              spreadRadius: 0,
-                            )
-                          ],
-                        ),
-                        child: const Icon(Icons.gps_fixed_outlined,
-                            color: AppColors.greyShade1),
-                      ),
+                          width: 40,
+                          height: 40,
+                          //  padding: const EdgeInsets.all(9),
+                          decoration: const BoxDecoration(
+                            color: AppColors.grey,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0, 4),
+                                color: AppColors.black,
+                                blurRadius: 4,
+                                spreadRadius: 0,
+                              )
+                            ],
+                          ),
+                          child: const Icon(
+                            Icons.gps_fixed_outlined,
+                            color: AppColors.greyShade1,
+                          )),
                     ],
                   ),
                   const SizedBox(height: 50),
@@ -94,12 +100,14 @@ class HomePage extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                       children: [
                         TextSpan(
-                            text: '°C',
-                            style: TextStyle(
-                                fontFamily: 'Raleway',
-                                fontSize: 48,
-                                color: AppColors.textBlueColor,
-                                fontWeight: FontWeight.w500))
+                          text: '°C',
+                          style: TextStyle(
+                            fontFamily: 'Raleway',
+                            fontSize: 48,
+                            color: AppColors.textBlueColor,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -141,10 +149,37 @@ class HomePage extends StatelessWidget {
                       SizedBox(width: 9),
                       Text('Helsinki',
                           style: TextStyle(
-                              fontSize: 18,
-                              color: AppColors.textdarkBlueColor,
-                              fontWeight: FontWeight.w500,)),
+                            fontSize: 18,
+                            color: AppColors.textdarkBlueColor,
+                            fontWeight: FontWeight.w500,
+                          )),
                     ],
+                  ),
+                  const Expanded(child: SizedBox(height: 20)),
+                  RippleAnimation(
+                    color: AppColors.greyShade1,
+                    minRadius: 20,
+                    ripplesCount: 3,
+                    repeat: true,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: AppColors.textdarkBlueColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: TextButton(
+                        onPressed: () {
+                          NavigationService(context)
+                              .navigateTransparentRoute(const ForecastPage());
+                        },
+                        style: TextButton.styleFrom(
+                          shape: const CircleBorder(),
+                          primary: AppColors.greyShade1,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 16),
+                        ),
+                        child: const Icon(Icons.arrow_downward),
+                      ),
+                    ),
                   )
                 ],
               ),
