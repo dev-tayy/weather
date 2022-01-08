@@ -11,12 +11,12 @@ class RippleAnimation extends StatefulWidget {
   final Widget child;
   final Duration delay;
   final double minRadius;
-  Color color = Colors.black;
+  final Color color;
   final int ripplesCount;
   final Duration duration;
   final bool repeat;
 
-  RippleAnimation({
+  const RippleAnimation({
     Key? key,
     required this.child,
     required this.color,

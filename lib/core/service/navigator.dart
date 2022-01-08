@@ -24,11 +24,13 @@ extension NavigationService on BuildContext {
 
   popView() => Navigator.pop(this);
 
-  navigateTransparentRoute(Widget route) {
+  navigateTransparentRoute(Widget route, double dx, dy) {
     return Navigator.push(
       this,
       TransparentRoute(
         builder: (context) => route,
+        dx: dx,
+        dy: dy,
       ),
     );
   }
@@ -37,10 +39,14 @@ extension NavigationService on BuildContext {
 class TransparentRoute extends PageRoute<void> {
   TransparentRoute({
     required this.builder,
+    required this.dx,
+    required this.dy,
     RouteSettings? settings,
   }) : super(settings: settings, fullscreenDialog: false);
 
   final WidgetBuilder builder;
+
+  final double dx, dy;
 
   @override
   bool get opaque => false;
@@ -55,7 +61,7 @@ class TransparentRoute extends PageRoute<void> {
   bool get maintainState => true;
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 350);
+  Duration get transitionDuration => const Duration(milliseconds: 500);
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,
@@ -69,7 +75,7 @@ class TransparentRoute extends PageRoute<void> {
         child: SlideTransition(
           transformHitTests: false,
           position: Tween<Offset>(
-            begin: const Offset(0.0, 1.0),
+            begin: Offset(dx, dy),
             end: Offset.zero,
           ).animate(animation),
           child: SlideTransition(

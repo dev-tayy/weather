@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/service/navigator.dart';
 import 'package:weather_app/presentation/forecast.dart';
+import 'package:weather_app/presentation/search_location.dart';
 import 'package:weather_app/utils/constants.dart';
 import 'package:weather_app/utils/ripple_effect.dart';
 
@@ -40,12 +41,16 @@ class HomePage extends StatelessWidget {
                 horizontal: 15.0,
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          NavigationService(context).navigateTransparentRoute(
+                              const SearchLocation(), -1.0, 0.0);
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: AppColors.grey,
                           elevation: 4,
@@ -168,8 +173,8 @@ class HomePage extends StatelessWidget {
                       ),
                       child: TextButton(
                         onPressed: () {
-                          NavigationService(context)
-                              .navigateTransparentRoute(const ForecastPage());
+                          NavigationService(context).navigateTransparentRoute(
+                              const ForecastPage(), 0.0, 1.0);
                         },
                         style: TextButton.styleFrom(
                           shape: const CircleBorder(),
