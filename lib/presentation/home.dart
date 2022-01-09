@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/core/service/geolocator.dart';
 import 'package:weather_app/core/service/navigator.dart';
 import 'package:weather_app/presentation/forecast.dart';
 import 'package:weather_app/presentation/search_location.dart';
 import 'package:weather_app/utils/constants.dart';
 import 'package:weather_app/utils/ripple_effect.dart';
+import 'package:weather_app/components/snackbar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -66,26 +68,30 @@ class HomePage extends StatelessWidget {
                               color: AppColors.greyShade1,
                             )),
                       ),
-                      Container(
-                          width: 40,
-                          height: 40,
-                          //  padding: const EdgeInsets.all(9),
-                          decoration: const BoxDecoration(
-                            color: AppColors.grey,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                offset: Offset(0, 4),
-                                color: AppColors.black,
-                                blurRadius: 4,
-                                spreadRadius: 0,
-                              )
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.gps_fixed_outlined,
-                            color: AppColors.greyShade1,
-                          )),
+                      GestureDetector(
+                        onTap: () => Locator.determinePosition(context)
+                            .then((value) => print(value)),
+                        child: Container(
+                            width: 40,
+                            height: 40,
+                            //  padding: const EdgeInsets.all(9),
+                            decoration: const BoxDecoration(
+                              color: AppColors.grey,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: Offset(0, 4),
+                                  color: AppColors.black,
+                                  blurRadius: 4,
+                                  spreadRadius: 0,
+                                )
+                              ],
+                            ),
+                            child: const Icon(
+                              Icons.gps_fixed_outlined,
+                              color: AppColors.greyShade1,
+                            )),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 50),
