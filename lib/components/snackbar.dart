@@ -49,9 +49,11 @@ class CustomSnackBar {
               color: Colors.red,
             ),
             const SizedBox(width: 5),
-            SelectableText(
-              message ?? 'An error occured',
-              style: const TextStyle(color: AppColors.greyShade1),
+            Expanded(
+              child: SelectableText(
+                message ?? 'An error occured',
+                style: const TextStyle(color: AppColors.greyShade1),
+              ),
             ),
           ],
         ),

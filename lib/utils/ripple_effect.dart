@@ -15,11 +15,13 @@ class RippleAnimation extends StatefulWidget {
   final int ripplesCount;
   final Duration duration;
   final bool repeat;
+  final bool isVisible;
 
   const RippleAnimation({
     Key? key,
     required this.child,
     required this.color,
+    this.isVisible = false,
     this.delay = const Duration(milliseconds: 0),
     this.repeat = false,
     this.minRadius = 60,
@@ -57,7 +59,7 @@ class _RippleAnimationState extends State<RippleAnimation>
         _controller,
         color: widget.color,
         minRadius: widget.minRadius,
-        wavesCount: widget.ripplesCount + 2,
+        wavesCount: widget.isVisible ? widget.ripplesCount + 2 : 0,
       ),
       child: widget.child,
     );

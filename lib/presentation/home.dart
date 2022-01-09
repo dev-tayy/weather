@@ -7,9 +7,15 @@ import 'package:weather_app/utils/constants.dart';
 import 'package:weather_app/utils/ripple_effect.dart';
 import 'package:weather_app/components/snackbar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool isVisible = false;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -69,28 +75,45 @@ class HomePage extends StatelessWidget {
                             )),
                       ),
                       GestureDetector(
-                        onTap: () => Locator.determinePosition(context)
-                            .then((value) => print(value)),
-                        child: Container(
-                            width: 40,
-                            height: 40,
-                            //  padding: const EdgeInsets.all(9),
-                            decoration: const BoxDecoration(
-                              color: AppColors.grey,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(0, 4),
-                                  color: AppColors.black,
-                                  blurRadius: 4,
-                                  spreadRadius: 0,
-                                )
-                              ],
-                            ),
-                            child: const Icon(
-                              Icons.gps_fixed_outlined,
-                              color: AppColors.greyShade1,
-                            )),
+                        onTap: () async {
+                          setState(() {
+                            isVisible = true;
+                          });
+                          await Locator.determinePosition(context)
+                              .then((value) {
+                            print(value);
+                            setState(() {
+                              isVisible = false;
+                            });
+                          });
+                        },
+                        child: RippleAnimation(
+                          color: AppColors.greyShade1,
+                          minRadius: 20,
+                          ripplesCount: 3,
+                          repeat: true,
+                          isVisible: isVisible,
+                          child: Container(
+                              width: 40,
+                              height: 40,
+                              //  padding: const EdgeInsets.all(9),
+                              decoration: const BoxDecoration(
+                                color: AppColors.grey,
+                                shape: BoxShape.circle,
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: Offset(0, 4),
+                                    color: AppColors.black,
+                                    blurRadius: 4,
+                                    spreadRadius: 0,
+                                  )
+                                ],
+                              ),
+                              child: const Icon(
+                                Icons.gps_fixed_outlined,
+                                color: AppColors.greyShade1,
+                              )),
+                        ),
                       ),
                     ],
                   ),
@@ -172,6 +195,7 @@ class HomePage extends StatelessWidget {
                     minRadius: 20,
                     ripplesCount: 3,
                     repeat: true,
+                    isVisible: true,
                     child: Container(
                       decoration: const BoxDecoration(
                         color: AppColors.textdarkBlueColor,
