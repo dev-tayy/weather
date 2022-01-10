@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/utils/constants.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SearchLocation extends StatelessWidget {
+class SearchLocation extends HookConsumerWidget {
   const SearchLocation({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var size = MediaQuery.of(context).size;
+    TextEditingController searchLocationController = TextEditingController();
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: SizedBox(
           width: size.width,
           height: size.height,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -41,6 +45,7 @@ class SearchLocation extends StatelessWidget {
                             enabled: true,
                             textInputAction: TextInputAction.search,
                             textCapitalization: TextCapitalization.words,
+                            controller: searchLocationController,
                             style: const TextStyle(
                               fontSize: 16,
                               color: AppColors.greyShade1,
@@ -76,7 +81,12 @@ class SearchLocation extends StatelessWidget {
                       SizedBox(
                         height: 48,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            ref
+                                .read(weatherNotifierProvider.notifier)
+                                .fetchWeather(
+                                    context, searchLocationController.text);
+                          },
                           style: TextButton.styleFrom(
                             shape: const RoundedRectangleBorder(),
                             backgroundColor: AppColors.blueColor,
@@ -84,7 +94,7 @@ class SearchLocation extends StatelessWidget {
                                 vertical: 10, horizontal: 16),
                           ),
                           child: const Text('Search',
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontSize: 16, color: AppColors.greyShade1)),
                         ),
                       ),

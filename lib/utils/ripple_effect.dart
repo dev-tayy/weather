@@ -3,10 +3,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// You can use whatever widget as a [child], when you don't need to provide any
-/// [child], just provide an empty Container().
-/// [delay] is using a [Timer] for delaying the animation, it's zero by default.
-/// You can set [repeat] to true for making a paulsing effect.
 class RippleAnimation extends StatefulWidget {
   final Widget child;
   final Duration delay;

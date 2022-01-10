@@ -36,6 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   hooks_riverpod: ^1.0.3
   geolocator: ^8.0.1
+  dio: ^4.0.4
+  freezed: ^1.1.1
+  build_runner: ^2.1.7
+  freezed_annotation: ^1.1.0
   
 
 dev_dependencies:
