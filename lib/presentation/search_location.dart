@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/components/snackbar.dart';
-import 'package:weather_app/core/models/weather.dart';
 import 'package:weather_app/core/service/exceptions/network_exceptions.dart';
-import 'package:weather_app/core/service/navigator.dart';
-import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/utils/constants.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

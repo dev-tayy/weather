@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/components/snackbar.dart';
 import 'package:weather_app/core/models/weather.dart';
 import 'package:weather_app/core/service/exceptions/network_exceptions.dart';
@@ -117,11 +118,9 @@ class WeatherAvailable extends HookConsumerWidget {
                         onTap: () {
                           isVisible.value = true;
                           ref
-                              .read(homeNotifierProvider.notifier)
+                              .read(weatherNotifierProvider.notifier)
                               .fetchWeatherWithGPS()
-                              .then((value) {
-                            isVisible.value = false;
-                          });
+                              .then((value) => isVisible.value = false);
                         },
                         child: RippleAnimation(
                           color: AppColors.greyShade1,
@@ -152,6 +151,32 @@ class WeatherAvailable extends HookConsumerWidget {
                       ),
                     ],
                   ),
+                  // ref.watch(homeNotifierProvider).when(idle: () {
+                  //   return const SizedBox();
+                  // }, loading: () {
+                  //   return Shimmer(
+                  //     duration: const Duration(seconds: 3), //Default value
+                  //     interval: const Duration(
+                  //         seconds: 5), //Default value: Duration(seconds: 0)
+                  //     color: Colors.white, //Default value
+                  //     colorOpacity: 0, //Default value
+                  //     enabled: true, //Default value
+                  //     direction:
+                  //         const ShimmerDirection.fromLTRB(), //Default Value
+                  //     child: SizedBox(
+                  //         width: size.width,
+                  //         height: size.height,
+                  //         child: InitialWeatherData(weather: weather)),
+                  //   );
+                  // }, data: (data) {
+                  //   return RefreshWeatherData(weather: data);
+                  // }, error: (error) {
+                  //   WidgetsBinding.instance!.addPostFrameCallback((_) =>
+                  //       CustomSnackBar.showErrorSnackBar(context,
+                  //           message: NetworkExceptions.getErrorMessage(error),
+                  //           snackBarBehavior: SnackBarBehavior.floating));
+                  //   return InitialWeatherData(weather: weather);
+                  // }),
                   ref.watch(weatherNotifierProvider).when(idle: () {
                     return InitialWeatherData(weather: weather);
                   }, loading: () {
@@ -172,11 +197,10 @@ class WeatherAvailable extends HookConsumerWidget {
                   }, data: (data) {
                     return RefreshWeatherData(weather: data);
                   }, error: (error) {
-                    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) =>
+                    WidgetsBinding.instance!.addPostFrameCallback((_) =>
                         CustomSnackBar.showErrorSnackBar(context,
                             message: NetworkExceptions.getErrorMessage(error),
                             snackBarBehavior: SnackBarBehavior.floating));
-
                     return InitialWeatherData(weather: weather);
                   }),
                 ]),
@@ -211,7 +235,7 @@ class RefreshWeatherData extends StatelessWidget {
         Center(
           child: RichText(
             text: TextSpan(
-              text: weather.consolidatedWeather[0].theTemp.toInt().toString(),
+              text: weather.consolidatedWeather[0].theTemp.toStringAsFixed(0),
               style: const TextStyle(
                   fontFamily: 'Raleway',
                   fontSize: 144,
@@ -293,8 +317,8 @@ class RefreshWeatherData extends StatelessWidget {
             ),
             child: TextButton(
               onPressed: () {
-                NavigationService(context)
-                    .navigateTransparentRoute(const ForecastPage(), 0.0, 1.0);
+                NavigationService(context).navigateTransparentRoute(
+                    ForecastPage(weatherData: weather), 0.0, 1.0);
               },
               style: TextButton.styleFrom(
                 shape: const CircleBorder(),
@@ -334,8 +358,7 @@ class InitialWeatherData extends StatelessWidget {
           child: RichText(
             text: TextSpan(
               text: weather.value!.consolidatedWeather[0].theTemp
-                  .toInt()
-                  .toString(),
+                  .toStringAsFixed(1),
               style: const TextStyle(
                   fontFamily: 'Raleway',
                   fontSize: 144,
@@ -382,7 +405,8 @@ class InitialWeatherData extends StatelessWidget {
             ),
             const SizedBox(width: 16),
             Text(
-                '${DateTime.now().day.toString()} / ${DateTime.now().month.toString()} / ${DateTime.now().year.toString()}',
+                DateFormat(DateFormat.ABBR_MONTH_WEEKDAY_DAY)
+                    .format(DateTime.now()),
                 style: const TextStyle(
                     fontSize: 18,
                     color: AppColors.textdarkBlueColor,
@@ -417,8 +441,8 @@ class InitialWeatherData extends StatelessWidget {
             ),
             child: TextButton(
               onPressed: () {
-                NavigationService(context)
-                    .navigateTransparentRoute(const ForecastPage(), 0.0, 1.0);
+                NavigationService(context).navigateTransparentRoute(
+                    ForecastPage(weatherData: weather.value), 0.0, 1.0);
               },
               style: TextButton.styleFrom(
                 shape: const CircleBorder(),

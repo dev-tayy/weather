@@ -45,6 +45,7 @@ dependencies:
   shared_preferences: ^2.0.12
   flutter_svg: ^1.0.1
   shimmer_animation: ^2.1.0+1
+  intl: ^0.17.0
   
   
 

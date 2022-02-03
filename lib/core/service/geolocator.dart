@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/core/service/exceptions/network_exceptions.dart';
 
@@ -49,6 +48,6 @@ class Locator {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.best);
+        desiredAccuracy: LocationAccuracy.best, forceAndroidLocationManager: true);
   }
 }

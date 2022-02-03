@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app/core/models/weather.dart';
@@ -6,6 +6,7 @@ import 'package:weather_app/core/repository/home.dart';
 import 'package:weather_app/core/repository/weather.dart';
 import 'package:weather_app/core/service/exceptions/network_exceptions.dart';
 import 'package:weather_app/core/service/prefs/shared_prefs.dart';
+import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/providers/weather_state.dart';
 import 'package:weather_app/core/service/geolocator.dart' as geolocator;
 
@@ -60,7 +61,7 @@ class HomeNotifierProvider extends StateNotifier<WeatherState<Weather>> {
 
   Future fetchWeatherWithGPS() async {
     try {
-      print(state);
+
       Position? position;
 
       await geolocator.Locator.determinePosition().then((value) async {

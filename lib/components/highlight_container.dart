@@ -7,10 +7,12 @@ class HighlightContainer extends StatelessWidget {
       required this.label,
       required this.size,
       required this.unit,
+      this.angle,
       required this.value})
       : super(key: key);
 
   final Size size;
+  final double? angle;
   final String label;
   final String value;
   final String unit;
@@ -25,33 +27,37 @@ class HighlightContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(label,
-                style: const TextStyle(
-                  color: AppColors.greyShade1,
-                  fontSize: 16.0,
-                )),
-            RichText(
-              text: TextSpan(
-                text: value,
-                style: const TextStyle(
-                    fontFamily: 'Raleway',
-                    fontSize: 64,
+            Flexible(
+              child: Text(label,
+                  style: const TextStyle(
                     color: AppColors.greyShade1,
-                    fontWeight: FontWeight.w700),
-                children: [
-                  TextSpan(
-                    text: unit,
-                    style: const TextStyle(
+                    fontSize: 16.0,
+                  )),
+            ),
+            Flexible(
+              child: RichText(
+                text: TextSpan(
+                  text: value,
+                  style: const TextStyle(
                       fontFamily: 'Raleway',
-                      fontSize: 36,
+                      fontSize: 64,
                       color: AppColors.greyShade1,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                ],
+                      fontWeight: FontWeight.w700),
+                  children: [
+                    TextSpan(
+                      text: unit,
+                      style: const TextStyle(
+                        fontFamily: 'Raleway',
+                        fontSize: 36,
+                        color: AppColors.greyShade1,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 30.0),
+            const Flexible(child:  SizedBox(height: 30.0)),
             label == 'Wind Status'
                 ? Row(
                     mainAxisSize: MainAxisSize.min,
@@ -63,10 +69,13 @@ class HighlightContainer extends StatelessWidget {
                             color: AppColors.grey,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(
-                            Icons.location_on,
-                            color: AppColors.greyShade1,
-                            size: 9,
+                          child: Transform.rotate(
+                            angle: angle ?? 0,
+                            child: const Icon(
+                              Icons.near_me,
+                              color: AppColors.greyShade1,
+                              size: 9,
+                            ),
                           )),
                       const SizedBox(width: 10.0),
                       const Text(
@@ -78,9 +87,7 @@ class HighlightContainer extends StatelessWidget {
                       ),
                     ],
                   )
-                : label == 'Humidity'
-                    ? const Text('Lol')
-                    : const SizedBox()
+                : const SizedBox()
           ],
         ));
   }

@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weather_app/components/forecast_container.dart';
 import 'package:weather_app/components/highlight_container.dart';
+import 'package:weather_app/core/models/weather.dart';
 import 'package:weather_app/utils/constants.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-class ForecastPage extends StatelessWidget {
-  const ForecastPage({Key? key}) : super(key: key);
+class ForecastPage extends HookConsumerWidget {
+  const ForecastPage({Key? key, required this.weatherData}) : super(key: key);
+  final Weather? weatherData;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var size = MediaQuery.of(context).size;
+    final weather = useState(weatherData);
     return Scaffold(
         backgroundColor: AppColors.darkBackgroundColor,
         body: SizedBox(
@@ -34,17 +39,18 @@ class ForecastPage extends StatelessWidget {
                   const SizedBox(height: 30.0),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
                     child: Row(
-                      children: const [
-                        ForecastContainer(),
-                        SizedBox(width: 20),
-                        ForecastContainer(),
-                        SizedBox(width: 20),
-                        ForecastContainer(),
-                        SizedBox(width: 20),
-                        ForecastContainer(),
-                        SizedBox(width: 20),
-                        ForecastContainer(),
+                      children: [
+                        ForecastContainer(weather: weatherData, index: 1),
+                        const SizedBox(width: 20),
+                        ForecastContainer(weather: weatherData, index: 2),
+                        const SizedBox(width: 20),
+                        ForecastContainer(weather: weatherData, index: 3),
+                        const SizedBox(width: 20),
+                        ForecastContainer(weather: weatherData, index: 4),
+                        const SizedBox(width: 20),
+                        ForecastContainer(weather: weatherData, index: 5),
                       ],
                     ),
                   ),
@@ -59,22 +65,31 @@ class ForecastPage extends StatelessWidget {
                   HighlightContainer(
                       size: size,
                       label: 'Wind Status',
-                      value: '7',
-                      unit: 'mph'),
+                      value: weather.value!.consolidatedWeather[0].windSpeed
+                          .toStringAsFixed(1),
+                      angle:
+                          weather.value!.consolidatedWeather[0].windDirection,
+                      unit: ' mph'),
                   const SizedBox(height: 20),
                   HighlightContainer(
-                      size: size, label: 'Humidity', value: '70', unit: ' %'),
+                      size: size,
+                      label: 'Humidity',
+                      value: weather.value!.consolidatedWeather[0].humidity
+                          .toString(),
+                      unit: ' %'),
                   const SizedBox(height: 20),
                   HighlightContainer(
                       size: size,
                       label: 'Visibility',
-                      value: '6,4',
+                      value: weather.value!.consolidatedWeather[0].visibility
+                          .toStringAsFixed(1),
                       unit: ' miles'),
                   const SizedBox(height: 20),
                   HighlightContainer(
                       size: size,
                       label: 'Air Pressure',
-                      value: '994',
+                      value: weather.value!.consolidatedWeather[0].airPressure
+                          .toString(),
                       unit: ' mb'),
                 ],
               ),
