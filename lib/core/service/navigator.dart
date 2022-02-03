@@ -22,10 +22,10 @@ extension NavigationService on BuildContext {
 
   popToFirst() => Navigator.of(this).popUntil((route) => route.isFirst);
 
-  popView() => Navigator.pop(this);
+  popView({data}) => Navigator.pop(this, data);
 
-  navigateTransparentRoute(Widget route, double dx, dy) {
-    return Navigator.push(
+  navigateTransparentRoute(Widget route, double dx, dy) async {
+    return await Navigator.push(
       this,
       TransparentRoute(
         builder: (context) => route,
@@ -61,7 +61,7 @@ class TransparentRoute extends PageRoute<void> {
   bool get maintainState => true;
 
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 500);
+  Duration get transitionDuration => const Duration(milliseconds: 350);
 
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,

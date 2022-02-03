@@ -5,11 +5,10 @@ class ApiClient {
   final Dio _dio;
   ApiClient({Dio? dio}) : _dio = dio ?? Dio(BaseOptions(baseUrl: _baseUrl));
 
-  Future<List> locationSearch(String query) async {
+  Future<List> locationSearchByCity(String? query) async {
     String url = '/location/search';
     try {
       final response = await _dio.get(url, queryParameters: {'query': query});
-     
       return response.data as List;
     } on FormatException {
       throw const FormatException("Bad response format 👎");
@@ -18,11 +17,25 @@ class ApiClient {
     }
   }
 
-  Future<List> getWeather(int woeid) async {
+  Future<List> locationSearchByLatLng(double latitude, double longitude) async {
+    String url = '/location/search';
+    String latlong = '$latitude,$longitude';
+    try {
+      final response =
+          await _dio.get(url, queryParameters: {'lattlong': latlong});
+      return response.data as List;
+    } on FormatException {
+      throw const FormatException("Bad response format 👎");
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Map<String, dynamic>> getWeather(int? woeid) async {
     String url = '/location/$woeid';
     try {
       final response = await _dio.get(url);
-      return response.data['consolidated_weather'] as List;
+      return response.data as Map<String, dynamic>;
     } on FormatException {
       throw const FormatException("Bad response format 👎");
     } catch (e) {

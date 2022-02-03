@@ -18,22 +18,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$WeatherStateTearOff {
   const _$WeatherStateTearOff();
 
-  Idle<Weather> idle<Weather>() {
-    return Idle<Weather>();
+  Idle<T> idle<T>() {
+    return Idle<T>();
   }
 
-  Loading<Weather> loading<Weather>() {
-    return Loading<Weather>();
+  Loading<T> loading<T>() {
+    return Loading<T>();
   }
 
-  Data<Weather> data<Weather>({required Weather data}) {
-    return Data<Weather>(
+  Data<T> data<T>({required T data}) {
+    return Data<T>(
       data: data,
     );
   }
 
-  Error<Weather> error<Weather>({required NetworkExceptions error}) {
-    return Error<Weather>(
+  Error<T> error<T>({required NetworkExceptions error}) {
+    return Error<T>(
       error: error,
     );
   }
@@ -43,12 +43,12 @@ class _$WeatherStateTearOff {
 const $WeatherState = _$WeatherStateTearOff();
 
 /// @nodoc
-mixin _$WeatherState<Weather> {
+mixin _$WeatherState<T> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(Weather data) data,
+    required TResult Function(T data) data,
     required TResult Function(NetworkExceptions error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,7 +56,7 @@ mixin _$WeatherState<Weather> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,93 +64,91 @@ mixin _$WeatherState<Weather> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Idle<Weather> value) idle,
-    required TResult Function(Loading<Weather> value) loading,
-    required TResult Function(Data<Weather> value) data,
-    required TResult Function(Error<Weather> value) error,
+    required TResult Function(Idle<T> value) idle,
+    required TResult Function(Loading<T> value) loading,
+    required TResult Function(Data<T> value) data,
+    required TResult Function(Error<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WeatherStateCopyWith<Weather, $Res> {
-  factory $WeatherStateCopyWith(WeatherState<Weather> value,
-          $Res Function(WeatherState<Weather>) then) =
-      _$WeatherStateCopyWithImpl<Weather, $Res>;
+abstract class $WeatherStateCopyWith<T, $Res> {
+  factory $WeatherStateCopyWith(
+          WeatherState<T> value, $Res Function(WeatherState<T>) then) =
+      _$WeatherStateCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class _$WeatherStateCopyWithImpl<Weather, $Res>
-    implements $WeatherStateCopyWith<Weather, $Res> {
+class _$WeatherStateCopyWithImpl<T, $Res>
+    implements $WeatherStateCopyWith<T, $Res> {
   _$WeatherStateCopyWithImpl(this._value, this._then);
 
-  final WeatherState<Weather> _value;
+  final WeatherState<T> _value;
   // ignore: unused_field
-  final $Res Function(WeatherState<Weather>) _then;
+  final $Res Function(WeatherState<T>) _then;
 }
 
 /// @nodoc
-abstract class $IdleCopyWith<Weather, $Res> {
-  factory $IdleCopyWith(
-          Idle<Weather> value, $Res Function(Idle<Weather>) then) =
-      _$IdleCopyWithImpl<Weather, $Res>;
+abstract class $IdleCopyWith<T, $Res> {
+  factory $IdleCopyWith(Idle<T> value, $Res Function(Idle<T>) then) =
+      _$IdleCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class _$IdleCopyWithImpl<Weather, $Res>
-    extends _$WeatherStateCopyWithImpl<Weather, $Res>
-    implements $IdleCopyWith<Weather, $Res> {
-  _$IdleCopyWithImpl(Idle<Weather> _value, $Res Function(Idle<Weather>) _then)
-      : super(_value, (v) => _then(v as Idle<Weather>));
+class _$IdleCopyWithImpl<T, $Res> extends _$WeatherStateCopyWithImpl<T, $Res>
+    implements $IdleCopyWith<T, $Res> {
+  _$IdleCopyWithImpl(Idle<T> _value, $Res Function(Idle<T>) _then)
+      : super(_value, (v) => _then(v as Idle<T>));
 
   @override
-  Idle<Weather> get _value => super._value as Idle<Weather>;
+  Idle<T> get _value => super._value as Idle<T>;
 }
 
 /// @nodoc
 
-class _$Idle<Weather> with DiagnosticableTreeMixin implements Idle<Weather> {
+class _$Idle<T> with DiagnosticableTreeMixin implements Idle<T> {
   const _$Idle();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WeatherState<$Weather>.idle()';
+    return 'WeatherState<$T>.idle()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'WeatherState<$Weather>.idle'));
+    properties..add(DiagnosticsProperty('type', 'WeatherState<$T>.idle'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Idle<Weather>);
+        (other.runtimeType == runtimeType && other is Idle<T>);
   }
 
   @override
@@ -161,7 +159,7 @@ class _$Idle<Weather> with DiagnosticableTreeMixin implements Idle<Weather> {
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(Weather data) data,
+    required TResult Function(T data) data,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return idle();
@@ -172,7 +170,7 @@ class _$Idle<Weather> with DiagnosticableTreeMixin implements Idle<Weather> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
   }) {
     return idle?.call();
@@ -183,7 +181,7 @@ class _$Idle<Weather> with DiagnosticableTreeMixin implements Idle<Weather> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -196,10 +194,10 @@ class _$Idle<Weather> with DiagnosticableTreeMixin implements Idle<Weather> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Idle<Weather> value) idle,
-    required TResult Function(Loading<Weather> value) loading,
-    required TResult Function(Data<Weather> value) data,
-    required TResult Function(Error<Weather> value) error,
+    required TResult Function(Idle<T> value) idle,
+    required TResult Function(Loading<T> value) loading,
+    required TResult Function(Data<T> value) data,
+    required TResult Function(Error<T> value) error,
   }) {
     return idle(this);
   }
@@ -207,10 +205,10 @@ class _$Idle<Weather> with DiagnosticableTreeMixin implements Idle<Weather> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
   }) {
     return idle?.call(this);
   }
@@ -218,10 +216,10 @@ class _$Idle<Weather> with DiagnosticableTreeMixin implements Idle<Weather> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -231,52 +229,46 @@ class _$Idle<Weather> with DiagnosticableTreeMixin implements Idle<Weather> {
   }
 }
 
-abstract class Idle<Weather> implements WeatherState<Weather> {
-  const factory Idle() = _$Idle<Weather>;
+abstract class Idle<T> implements WeatherState<T> {
+  const factory Idle() = _$Idle<T>;
 }
 
 /// @nodoc
-abstract class $LoadingCopyWith<Weather, $Res> {
-  factory $LoadingCopyWith(
-          Loading<Weather> value, $Res Function(Loading<Weather>) then) =
-      _$LoadingCopyWithImpl<Weather, $Res>;
+abstract class $LoadingCopyWith<T, $Res> {
+  factory $LoadingCopyWith(Loading<T> value, $Res Function(Loading<T>) then) =
+      _$LoadingCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class _$LoadingCopyWithImpl<Weather, $Res>
-    extends _$WeatherStateCopyWithImpl<Weather, $Res>
-    implements $LoadingCopyWith<Weather, $Res> {
-  _$LoadingCopyWithImpl(
-      Loading<Weather> _value, $Res Function(Loading<Weather>) _then)
-      : super(_value, (v) => _then(v as Loading<Weather>));
+class _$LoadingCopyWithImpl<T, $Res> extends _$WeatherStateCopyWithImpl<T, $Res>
+    implements $LoadingCopyWith<T, $Res> {
+  _$LoadingCopyWithImpl(Loading<T> _value, $Res Function(Loading<T>) _then)
+      : super(_value, (v) => _then(v as Loading<T>));
 
   @override
-  Loading<Weather> get _value => super._value as Loading<Weather>;
+  Loading<T> get _value => super._value as Loading<T>;
 }
 
 /// @nodoc
 
-class _$Loading<Weather>
-    with DiagnosticableTreeMixin
-    implements Loading<Weather> {
+class _$Loading<T> with DiagnosticableTreeMixin implements Loading<T> {
   const _$Loading();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WeatherState<$Weather>.loading()';
+    return 'WeatherState<$T>.loading()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'WeatherState<$Weather>.loading'));
+    properties..add(DiagnosticsProperty('type', 'WeatherState<$T>.loading'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is Loading<Weather>);
+        (other.runtimeType == runtimeType && other is Loading<T>);
   }
 
   @override
@@ -287,7 +279,7 @@ class _$Loading<Weather>
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(Weather data) data,
+    required TResult Function(T data) data,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return loading();
@@ -298,7 +290,7 @@ class _$Loading<Weather>
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
   }) {
     return loading?.call();
@@ -309,7 +301,7 @@ class _$Loading<Weather>
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -322,10 +314,10 @@ class _$Loading<Weather>
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Idle<Weather> value) idle,
-    required TResult Function(Loading<Weather> value) loading,
-    required TResult Function(Data<Weather> value) data,
-    required TResult Function(Error<Weather> value) error,
+    required TResult Function(Idle<T> value) idle,
+    required TResult Function(Loading<T> value) loading,
+    required TResult Function(Data<T> value) data,
+    required TResult Function(Error<T> value) error,
   }) {
     return loading(this);
   }
@@ -333,10 +325,10 @@ class _$Loading<Weather>
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
   }) {
     return loading?.call(this);
   }
@@ -344,10 +336,10 @@ class _$Loading<Weather>
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -357,59 +349,57 @@ class _$Loading<Weather>
   }
 }
 
-abstract class Loading<Weather> implements WeatherState<Weather> {
-  const factory Loading() = _$Loading<Weather>;
+abstract class Loading<T> implements WeatherState<T> {
+  const factory Loading() = _$Loading<T>;
 }
 
 /// @nodoc
-abstract class $DataCopyWith<Weather, $Res> {
-  factory $DataCopyWith(
-          Data<Weather> value, $Res Function(Data<Weather>) then) =
-      _$DataCopyWithImpl<Weather, $Res>;
-  $Res call({Weather data});
+abstract class $DataCopyWith<T, $Res> {
+  factory $DataCopyWith(Data<T> value, $Res Function(Data<T>) then) =
+      _$DataCopyWithImpl<T, $Res>;
+  $Res call({T data});
 }
 
 /// @nodoc
-class _$DataCopyWithImpl<Weather, $Res>
-    extends _$WeatherStateCopyWithImpl<Weather, $Res>
-    implements $DataCopyWith<Weather, $Res> {
-  _$DataCopyWithImpl(Data<Weather> _value, $Res Function(Data<Weather>) _then)
-      : super(_value, (v) => _then(v as Data<Weather>));
+class _$DataCopyWithImpl<T, $Res> extends _$WeatherStateCopyWithImpl<T, $Res>
+    implements $DataCopyWith<T, $Res> {
+  _$DataCopyWithImpl(Data<T> _value, $Res Function(Data<T>) _then)
+      : super(_value, (v) => _then(v as Data<T>));
 
   @override
-  Data<Weather> get _value => super._value as Data<Weather>;
+  Data<T> get _value => super._value as Data<T>;
 
   @override
   $Res call({
     Object? data = freezed,
   }) {
-    return _then(Data<Weather>(
+    return _then(Data<T>(
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as Weather,
+              as T,
     ));
   }
 }
 
 /// @nodoc
 
-class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
+class _$Data<T> with DiagnosticableTreeMixin implements Data<T> {
   const _$Data({required this.data});
 
   @override
-  final Weather data;
+  final T data;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WeatherState<$Weather>.data(data: $data)';
+    return 'WeatherState<$T>.data(data: $data)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'WeatherState<$Weather>.data'))
+      ..add(DiagnosticsProperty('type', 'WeatherState<$T>.data'))
       ..add(DiagnosticsProperty('data', data));
   }
 
@@ -417,7 +407,7 @@ class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Data<Weather> &&
+            other is Data<T> &&
             const DeepCollectionEquality().equals(other.data, data));
   }
 
@@ -427,15 +417,15 @@ class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
 
   @JsonKey(ignore: true)
   @override
-  $DataCopyWith<Weather, Data<Weather>> get copyWith =>
-      _$DataCopyWithImpl<Weather, Data<Weather>>(this, _$identity);
+  $DataCopyWith<T, Data<T>> get copyWith =>
+      _$DataCopyWithImpl<T, Data<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(Weather data) data,
+    required TResult Function(T data) data,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return data(this.data);
@@ -446,7 +436,7 @@ class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
   }) {
     return data?.call(this.data);
@@ -457,7 +447,7 @@ class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -470,10 +460,10 @@ class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Idle<Weather> value) idle,
-    required TResult Function(Loading<Weather> value) loading,
-    required TResult Function(Data<Weather> value) data,
-    required TResult Function(Error<Weather> value) error,
+    required TResult Function(Idle<T> value) idle,
+    required TResult Function(Loading<T> value) loading,
+    required TResult Function(Data<T> value) data,
+    required TResult Function(Error<T> value) error,
   }) {
     return data(this);
   }
@@ -481,10 +471,10 @@ class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
   }) {
     return data?.call(this);
   }
@@ -492,10 +482,10 @@ class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
     required TResult orElse(),
   }) {
     if (data != null) {
@@ -505,41 +495,37 @@ class _$Data<Weather> with DiagnosticableTreeMixin implements Data<Weather> {
   }
 }
 
-abstract class Data<Weather> implements WeatherState<Weather> {
-  const factory Data({required Weather data}) = _$Data<Weather>;
+abstract class Data<T> implements WeatherState<T> {
+  const factory Data({required T data}) = _$Data<T>;
 
-  Weather get data;
+  T get data;
   @JsonKey(ignore: true)
-  $DataCopyWith<Weather, Data<Weather>> get copyWith =>
-      throw _privateConstructorUsedError;
+  $DataCopyWith<T, Data<T>> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ErrorCopyWith<Weather, $Res> {
-  factory $ErrorCopyWith(
-          Error<Weather> value, $Res Function(Error<Weather>) then) =
-      _$ErrorCopyWithImpl<Weather, $Res>;
+abstract class $ErrorCopyWith<T, $Res> {
+  factory $ErrorCopyWith(Error<T> value, $Res Function(Error<T>) then) =
+      _$ErrorCopyWithImpl<T, $Res>;
   $Res call({NetworkExceptions error});
 
   $NetworkExceptionsCopyWith<$Res> get error;
 }
 
 /// @nodoc
-class _$ErrorCopyWithImpl<Weather, $Res>
-    extends _$WeatherStateCopyWithImpl<Weather, $Res>
-    implements $ErrorCopyWith<Weather, $Res> {
-  _$ErrorCopyWithImpl(
-      Error<Weather> _value, $Res Function(Error<Weather>) _then)
-      : super(_value, (v) => _then(v as Error<Weather>));
+class _$ErrorCopyWithImpl<T, $Res> extends _$WeatherStateCopyWithImpl<T, $Res>
+    implements $ErrorCopyWith<T, $Res> {
+  _$ErrorCopyWithImpl(Error<T> _value, $Res Function(Error<T>) _then)
+      : super(_value, (v) => _then(v as Error<T>));
 
   @override
-  Error<Weather> get _value => super._value as Error<Weather>;
+  Error<T> get _value => super._value as Error<T>;
 
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(Error<Weather>(
+    return _then(Error<T>(
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -557,7 +543,7 @@ class _$ErrorCopyWithImpl<Weather, $Res>
 
 /// @nodoc
 
-class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
+class _$Error<T> with DiagnosticableTreeMixin implements Error<T> {
   const _$Error({required this.error});
 
   @override
@@ -565,14 +551,14 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WeatherState<$Weather>.error(error: $error)';
+    return 'WeatherState<$T>.error(error: $error)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'WeatherState<$Weather>.error'))
+      ..add(DiagnosticsProperty('type', 'WeatherState<$T>.error'))
       ..add(DiagnosticsProperty('error', error));
   }
 
@@ -580,7 +566,7 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Error<Weather> &&
+            other is Error<T> &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -590,15 +576,15 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
 
   @JsonKey(ignore: true)
   @override
-  $ErrorCopyWith<Weather, Error<Weather>> get copyWith =>
-      _$ErrorCopyWithImpl<Weather, Error<Weather>>(this, _$identity);
+  $ErrorCopyWith<T, Error<T>> get copyWith =>
+      _$ErrorCopyWithImpl<T, Error<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
     required TResult Function() loading,
-    required TResult Function(Weather data) data,
+    required TResult Function(T data) data,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return error(this.error);
@@ -609,7 +595,7 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
   }) {
     return error?.call(this.error);
@@ -620,7 +606,7 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
     TResult Function()? loading,
-    TResult Function(Weather data)? data,
+    TResult Function(T data)? data,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -633,10 +619,10 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(Idle<Weather> value) idle,
-    required TResult Function(Loading<Weather> value) loading,
-    required TResult Function(Data<Weather> value) data,
-    required TResult Function(Error<Weather> value) error,
+    required TResult Function(Idle<T> value) idle,
+    required TResult Function(Loading<T> value) loading,
+    required TResult Function(Data<T> value) data,
+    required TResult Function(Error<T> value) error,
   }) {
     return error(this);
   }
@@ -644,10 +630,10 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
   }) {
     return error?.call(this);
   }
@@ -655,10 +641,10 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(Idle<Weather> value)? idle,
-    TResult Function(Loading<Weather> value)? loading,
-    TResult Function(Data<Weather> value)? data,
-    TResult Function(Error<Weather> value)? error,
+    TResult Function(Idle<T> value)? idle,
+    TResult Function(Loading<T> value)? loading,
+    TResult Function(Data<T> value)? data,
+    TResult Function(Error<T> value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -668,11 +654,11 @@ class _$Error<Weather> with DiagnosticableTreeMixin implements Error<Weather> {
   }
 }
 
-abstract class Error<Weather> implements WeatherState<Weather> {
-  const factory Error({required NetworkExceptions error}) = _$Error<Weather>;
+abstract class Error<T> implements WeatherState<T> {
+  const factory Error({required NetworkExceptions error}) = _$Error<T>;
 
   NetworkExceptions get error;
   @JsonKey(ignore: true)
-  $ErrorCopyWith<Weather, Error<Weather>> get copyWith =>
+  $ErrorCopyWith<T, Error<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

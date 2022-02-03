@@ -37,7 +37,8 @@ abstract class NetworkExceptions with _$NetworkExceptions {
 
   const factory NetworkExceptions.defaultError(String error) = DefaultError;
 
-  const factory NetworkExceptions.unexpectedError(String error) = UnexpectedError;
+  const factory NetworkExceptions.unexpectedError(String error) =
+      UnexpectedError;
 
   static NetworkExceptions getDioException(error) {
     if (error is Exception) {
@@ -61,8 +62,8 @@ abstract class NetworkExceptions with _$NetworkExceptions {
             case DioErrorType.response:
               switch (error.response!.statusCode) {
                 case 400:
-                  networkExceptions =
-                      NetworkExceptions.notFound(error.response!.data['message']);
+                  networkExceptions = NetworkExceptions.notFound(
+                      error.response!.data['message']);
                   break;
                 case 401:
                   networkExceptions =
@@ -73,8 +74,8 @@ abstract class NetworkExceptions with _$NetworkExceptions {
                       const NetworkExceptions.unauthorisedRequest();
                   break;
                 case 404:
-                  networkExceptions =
-                      NetworkExceptions.notFound(error.response!.data['message']);
+                  networkExceptions = NetworkExceptions.notFound(
+                      error.response!.data['message']);
                   break;
                 case 409:
                   networkExceptions = const NetworkExceptions.conflict();
@@ -102,22 +103,22 @@ abstract class NetworkExceptions with _$NetworkExceptions {
         } else if (error is SocketException) {
           networkExceptions = const NetworkExceptions.noInternetConnection();
         } else {
-           print(error);
-          networkExceptions = const NetworkExceptions.unexpectedError('An unexpected error occurred');
+          networkExceptions = const NetworkExceptions.unexpectedError(
+              'An unexpected error occurred');
         }
         return networkExceptions;
       } on FormatException {
         return const NetworkExceptions.formatException();
       } catch (_) {
-        return const NetworkExceptions.unexpectedError('An unexpected error occurred');
+        return const NetworkExceptions.unexpectedError(
+            'An unexpected error occurred');
       }
     } else {
       if (error.toString().contains("is not a subtype of")) {
-        print(error);
         return const NetworkExceptions.unableToProcess();
       } else {
-        print(error);
-        return const NetworkExceptions.unexpectedError('An unexpected error occurred');
+        return const NetworkExceptions.unexpectedError(
+            'An unexpected error occurred');
       }
     }
   }

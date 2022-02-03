@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/components/snackbar.dart';
+import 'package:weather_app/core/models/weather.dart';
+import 'package:weather_app/core/service/exceptions/network_exceptions.dart';
+import 'package:weather_app/core/service/navigator.dart';
 import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/utils/constants.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 class SearchLocation extends HookConsumerWidget {
   const SearchLocation({Key? key}) : super(key: key);
@@ -9,8 +14,7 @@ class SearchLocation extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var size = MediaQuery.of(context).size;
-    TextEditingController searchLocationController = TextEditingController();
-
+    final searchLocationController = useTextEditingController();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
@@ -56,8 +60,12 @@ class SearchLocation extends HookConsumerWidget {
                                 Icons.search,
                                 color: AppColors.darkGrey,
                               ),
-                              hintText: 'search location',
+                              hintText: 'Search location',
                               hintStyle: TextStyle(
+                                fontSize: 16,
+                                color: AppColors.darkGrey,
+                              ),
+                              errorStyle: TextStyle(
                                 fontSize: 16,
                                 color: AppColors.darkGrey,
                               ),
@@ -82,10 +90,18 @@ class SearchLocation extends HookConsumerWidget {
                         height: 48,
                         child: TextButton(
                           onPressed: () {
-                            ref
-                                .read(weatherNotifierProvider.notifier)
-                                .fetchWeather(
-                                    context, searchLocationController.text);
+                            if (searchLocationController.text.isNotEmpty) {
+                              Navigator.pop(
+                                  context, searchLocationController.text);
+                            } else {
+                              CustomSnackBar.showErrorSnackBar(
+                                context,
+                                message: NetworkExceptions.getErrorMessage(
+                                    const NetworkExceptions.unexpectedError(
+                                        'Please enter a location')),
+                                milliseconds: 2000,
+                              );
+                            }
                           },
                           style: TextButton.styleFrom(
                             shape: const RoundedRectangleBorder(),
@@ -99,7 +115,8 @@ class SearchLocation extends HookConsumerWidget {
                         ),
                       ),
                     ],
-                  )
+                  ),
+                  const SizedBox(height: 35),
                 ],
               ),
             ),

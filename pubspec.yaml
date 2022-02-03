@@ -40,6 +40,12 @@ dependencies:
   freezed: ^1.1.1
   build_runner: ^2.1.7
   freezed_annotation: ^1.1.0
+  flutter_overlay_loader: ^1.0.3
+  lottie: ^1.2.1
+  shared_preferences: ^2.0.12
+  flutter_svg: ^1.0.1
+  shimmer_animation: ^2.1.0+1
+  
   
 
 dev_dependencies:

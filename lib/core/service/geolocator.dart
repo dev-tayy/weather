@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:weather_app/components/snackbar.dart';
+import 'package:weather_app/core/service/exceptions/network_exceptions.dart';
 
 /// Determine the current position of the device.
 ///
@@ -8,7 +8,7 @@ import 'package:weather_app/components/snackbar.dart';
 /// are denied the `Future` will return an error.
 
 class Locator {
-  static Future<Position> determinePosition(BuildContext context) async {
+  static Future<dynamic> determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
@@ -18,9 +18,8 @@ class Locator {
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
-      return CustomSnackBar.showErrorSnackBar(context,
-          message:
-              'Location services are not enabled. Please enable location services.');
+      throw const NetworkExceptions.unexpectedError(
+          'Location services are not enabled. Please enable location services.');
       // return Future.error('Location services are disabled.');
     }
 
@@ -33,18 +32,16 @@ class Locator {
         // Android's shouldShowRequestPermissionRationale
         // returned true. According to Android guidelines
         // your App should show an explanatory UI now.
-        return CustomSnackBar.showErrorSnackBar(context,
-            message:
-                'Location permissions are denied. Please enable location permissions.');
+        throw const NetworkExceptions.unexpectedError(
+            'Location permissions are denied. Please enable location permissions.');
         //return Future.error('Location permissions are denied');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, handle appropriately.
-      return CustomSnackBar.showErrorSnackBar(context,
-          message:
-              'Location permissions are denied forever. Please enable location permissions.');
+      throw const NetworkExceptions.unexpectedError(
+          'Location permissions are denied forever. Please enable location permissions.');
       // return Future.error(
       //     'Location permissions are permanently denied, we cannot request permissions.');
     }
@@ -52,6 +49,6 @@ class Locator {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        desiredAccuracy: LocationAccuracy.best);
   }
 }

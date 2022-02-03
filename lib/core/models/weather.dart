@@ -10,6 +10,56 @@ String weatherToJson(Weather data) => json.encode(data.toJson());
 
 class Weather {
   Weather({
+    required this.consolidatedWeather,
+    required this.time,
+    required this.title,
+    required this.locationType,
+    required this.woeid,
+  });
+
+  List<ConsolidatedWeather> consolidatedWeather;
+  DateTime time;
+  String title;
+  String locationType;
+  int woeid;
+
+  Weather copyWith({
+    List<ConsolidatedWeather>? consolidatedWeather,
+    DateTime? time,
+    String? title,
+    String? locationType,
+    int? woeid,
+  }) =>
+      Weather(
+        consolidatedWeather: consolidatedWeather ?? this.consolidatedWeather,
+        time: time ?? this.time,
+        title: title ?? this.title,
+        locationType: locationType ?? this.locationType,
+        woeid: woeid ?? this.woeid,
+      );
+
+  factory Weather.fromJson(Map<String, dynamic> json) => Weather(
+        consolidatedWeather: List<ConsolidatedWeather>.from(
+            json["consolidated_weather"]
+                .map((x) => ConsolidatedWeather.fromJson(x))),
+        time: DateTime.parse(json["time"]),
+        title: json["title"],
+        locationType: json["location_type"],
+        woeid: json["woeid"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "consolidated_weather":
+            List<dynamic>.from(consolidatedWeather.map((x) => x.toJson())),
+        "time": time.toIso8601String(),
+        "title": title,
+        "location_type": locationType,
+        "woeid": woeid,
+      };
+}
+
+class ConsolidatedWeather {
+  ConsolidatedWeather({
     required this.id,
     required this.weatherStateName,
     required this.weatherStateAbbr,
@@ -43,7 +93,7 @@ class Weather {
   double visibility;
   int predictability;
 
-  Weather copyWith({
+  ConsolidatedWeather copyWith({
     int? id,
     String? weatherStateName,
     String? weatherStateAbbr,
@@ -60,7 +110,7 @@ class Weather {
     double? visibility,
     int? predictability,
   }) =>
-      Weather(
+      ConsolidatedWeather(
         id: id ?? this.id,
         weatherStateName: weatherStateName ?? this.weatherStateName,
         weatherStateAbbr: weatherStateAbbr ?? this.weatherStateAbbr,
@@ -78,7 +128,8 @@ class Weather {
         predictability: predictability ?? this.predictability,
       );
 
-  factory Weather.fromJson(Map<String, dynamic> json) => Weather(
+  factory ConsolidatedWeather.fromJson(Map<String, dynamic> json) =>
+      ConsolidatedWeather(
         id: json["id"],
         weatherStateName: json["weather_state_name"],
         weatherStateAbbr: json["weather_state_abbr"],
@@ -90,7 +141,7 @@ class Weather {
         theTemp: json["the_temp"].toDouble(),
         windSpeed: json["wind_speed"].toDouble(),
         windDirection: json["wind_direction"].toDouble(),
-        airPressure: json["air_pressure"],
+        airPressure: json["air_pressure"].toDouble(),
         humidity: json["humidity"],
         visibility: json["visibility"].toDouble(),
         predictability: json["predictability"],
