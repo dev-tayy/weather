@@ -28,7 +28,10 @@ class HomePage extends HookConsumerWidget {
       body: ref.watch(homeNotifierProvider).when(
             idle: () {},
             loading: () {
-              return const Center(child: CircularProgressIndicator());
+              return Center(
+                child: Image.asset('assets/ss_loader_label.gif',
+                    width: 250, height: 250, filterQuality: FilterQuality.high),
+              );
             },
             data: (Weather data) {
               return WeatherAvailable(weatherData: data);
@@ -151,32 +154,6 @@ class WeatherAvailable extends HookConsumerWidget {
                       ),
                     ],
                   ),
-                  // ref.watch(homeNotifierProvider).when(idle: () {
-                  //   return const SizedBox();
-                  // }, loading: () {
-                  //   return Shimmer(
-                  //     duration: const Duration(seconds: 3), //Default value
-                  //     interval: const Duration(
-                  //         seconds: 5), //Default value: Duration(seconds: 0)
-                  //     color: Colors.white, //Default value
-                  //     colorOpacity: 0, //Default value
-                  //     enabled: true, //Default value
-                  //     direction:
-                  //         const ShimmerDirection.fromLTRB(), //Default Value
-                  //     child: SizedBox(
-                  //         width: size.width,
-                  //         height: size.height,
-                  //         child: InitialWeatherData(weather: weather)),
-                  //   );
-                  // }, data: (data) {
-                  //   return RefreshWeatherData(weather: data);
-                  // }, error: (error) {
-                  //   WidgetsBinding.instance!.addPostFrameCallback((_) =>
-                  //       CustomSnackBar.showErrorSnackBar(context,
-                  //           message: NetworkExceptions.getErrorMessage(error),
-                  //           snackBarBehavior: SnackBarBehavior.floating));
-                  //   return InitialWeatherData(weather: weather);
-                  // }),
                   ref.watch(weatherNotifierProvider).when(idle: () {
                     return InitialWeatherData(weather: weather);
                   }, loading: () {
@@ -282,7 +259,8 @@ class RefreshWeatherData extends StatelessWidget {
             ),
             const SizedBox(width: 16),
             Text(
-                '${DateTime.now().day.toString()} / ${DateTime.now().month.toString()} / ${DateTime.now().year.toString()}',
+                DateFormat(DateFormat.ABBR_MONTH_WEEKDAY_DAY)
+                    .format(DateTime.now()),
                 style: const TextStyle(
                     fontSize: 18,
                     color: AppColors.textdarkBlueColor,

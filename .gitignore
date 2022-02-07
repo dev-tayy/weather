@@ -31,6 +31,9 @@
 .pub/
 /build/
 
+#APP SECRET
+/lib/core/service/apis/appsecret.dart
+
 # Web related
 lib/generated_plugin_registrant.dart
 
