@@ -1,8 +1,8 @@
 # Weather App - Made With Flutter :blue_heart: #
 A simple weather app that displays weather conditions.
 
-[![GitHub release]](https://github.com/iloveteajay/weather/releases) [![GitHub stars]](https://github.com/iloveteajay/weather/stargazers) [![GitHub issues]](https://github.com/iloveteajay/weather/issues) [![GitHub issues](https://img.shields.io/github/issues-closed/iloveteajay/weather?color=brightgreen)](https://github.com/iloveteajay/weather/issues?q=is%3Aissue+is%3Aclosed) [![GitHub PRs](https://img.shields.io/github/issues-pr-closed/iloveteajay/weather?color=blueviolet)](https://github.com/iloveteajay/weather/pulls?q=is%3Apr+is%3Aclosed) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/iloveteajay/weather) [![GitHub forks](https://img.shields.io/github/forks/iloveteajay/weather?color=yellow)](https://github.com/iloveteajay/weather/network) [![License: MIT](https://img.shields.io/github/license/iloveteajay/weather)](https://github.com/iloveteajay/weather/blob/master/LICENSE) [![made-with-python](https://img.shields.io/badge/Made%20With-Flutter-blue)](https://flutter.dev/)
-
+ [![made-with-python](https://img.shields.io/badge/Made%20With-Flutter-blue)](https://flutter.dev/) [![License: MIT](https://img.shields.io/github/license/iloveteajay/weather)](https://github.com/iloveteajay/weather/blob/master/LICENSE) 
+ 
 This application is made with **Flutter** framework to provide weather details for a specified location.
 **The release apk is available under the release tags. It's also available on this drive link - [Weather APK]**
 
